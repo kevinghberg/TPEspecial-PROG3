@@ -1,8 +1,8 @@
 import java.util.LinkedList;
 
 public class Vertice<T> {
-	public int verticeId;
-	public LinkedList<Arco<T>> arcos;
+	protected int verticeId;
+	private LinkedList<Arco<T>> arcos;
 
 	public Vertice(int verticeId) {
 		this.verticeId = verticeId;
@@ -18,9 +18,20 @@ public class Vertice<T> {
 	}
 
 	public void agregarArco(int verticeDestino, T etiqueta) {
+		// verificar arco.verticedestino
 		Arco<T> arco = new Arco<T>(this.verticeId, verticeDestino, etiqueta);
 		if (!arcos.contains(arco)) {
 			this.arcos.add(arco);
 		}
 	}
+
+	public boolean tieneArco(int verticeDestino) {
+		for (Arco<T> a : arcos) {
+			if (a.getVerticeDestino() == verticeDestino) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }
